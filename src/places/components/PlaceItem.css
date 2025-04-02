@@ -1,0 +1,219 @@
+/* .place-item {
+  margin: 1rem 0;
+}
+
+.place-item__content {
+  padding: 0;
+}
+
+.place-item__info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.place-item__image {
+  width: 100%;
+  height: 12.5rem;
+  margin-right: 1.5rem;
+}
+
+.place-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-fit: contain;
+}
+
+.place-item__info h2,
+.place-item__info h3,
+.place-item__info p {
+  margin: 0 0 0.5rem 0;
+}
+
+.place-item__actions {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+.place-item__modal-content {
+  padding: 0;
+}
+
+.place-item__modal-actions {
+  text-align: right;
+}
+
+.place-item__actions button,
+.place-item__actions a {
+  margin: 0.5rem;
+}
+
+.map-container {
+  height: 20rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .place-item__image {
+    height: 20rem;
+  }
+} */
+
+/* HAAHA */
+
+/* 🔹 Place Item Container */
+.place-item {
+  margin: 1rem 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(20, 20, 20, 0.6); /* Subtle dark effect */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* 🔹 Hover Effect: Slight Lift */
+.place-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* 🔹 Content Box */
+.place-item__content {
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+🔹 Image Section .place-item__image {
+  width: 100%;
+  height: auto;
+  max-height: 25rem;
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* 🔹 Image Styling - Full Display */
+.place-item__image img {
+  width: 100%;
+  /* max-width: 1000rem; */
+  /* height: auto; */
+  max-height: 30rem;
+  object-fit: contain;
+  transition: transform 0.4s ease-in-out, filter 0.3s ease-in-out;
+  filter: grayscale(40%);
+}
+
+/* 🔹 Image Hover Effect */
+.place-item:hover .place-item__image img {
+  transform: scale(1.05);
+  filter: grayscale(10%);
+}
+
+/* 🔹 Info Section */
+.place-item__info {
+  padding: 1.5rem;
+  text-align: center;
+  color: #ddd;
+  animation: slideUp 0.6s ease-in-out;
+}
+
+/* 🔹 Typography Enhancements */
+.place-item__info h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.place-item__info h3 {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+.place-item__info p {
+  font-size: 1rem;
+  color: #888;
+}
+
+/* 🔹 Subtle Appear Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 🔹 Actions Section */
+.place-item__actions {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 🔹 Buttons & Links */
+.place-item__actions button,
+.place-item__actions a {
+  margin: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #ddd;
+  background: transparent;
+  transition: all 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* 🔹 Hover Effect */
+.place-item__actions button:hover,
+.place-item__actions a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+/* 🔹 Modal Content */
+.place-item__modal-content {
+  padding: 0;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 🔹 Modal Actions */
+.place-item__modal-actions {
+  text-align: right;
+}
+
+/* 🔹 Map Container */
+.map-container {
+  height: 20rem;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 🔹 Responsive: Desktop View */
+@media (min-width: 768px) {
+  .place-item__image {
+    height: auto;
+  }
+}
