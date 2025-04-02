@@ -1,0 +1,188 @@
+/* .nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-links li {
+  margin: 1rem;
+}
+
+.nav-links a {
+  border: 1px solid transparent;
+  color: #292929;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+.nav-links a:hover,
+.nav-links a:active,
+.nav-links a.active {
+  background: #f8df00;
+  border-color: #292929;
+  color: #292929;
+}
+
+.nav-links button {
+  cursor: pointer;
+  border: 1px solid #292929;
+  color: #292929;
+  background: transparent;
+  padding: 0.5rem;
+  font: inherit;
+}
+
+.nav-links button:focus {
+  outline: none;
+}
+
+.nav-links button:hover,
+.nav-links button:active {
+  background: #292929;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    flex-direction: row;
+  }
+
+  .nav-links li {
+    margin: 0 0.5rem;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav-links button {
+    border: 1px solid white;
+    color: white;
+    background: transparent;
+  }
+
+  .nav-links button:hover,
+  .nav-links button:active {
+    background: #f8df00;
+    color: #292929;
+  }
+} */
+
+/* 🔹 Navigation Links Container */
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* 🔹 Fade-in Animation */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🔹 Individual Link Items */
+.nav-links li {
+  margin: 1rem;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* 🔹 Navigation Links */
+.nav-links a {
+  color: #f1f1f1;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  position: relative;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* 🔹 Underline Animation (Expands from Center) */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: #ffd900;
+  transition: width 0.4s ease, left 0.4s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* 🔹 Lift Effect on Hover */
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffd900;
+  transform: translateY(-3px);
+}
+
+/* 🔹 Animated Button */
+.nav-links button {
+  cursor: pointer;
+  border: 2px solid #f1f1f1;
+  color: #f1f1f1;
+  background: transparent;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  border-radius: 4px;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out,
+    transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* 🔹 Glow Effect on Hover */
+.nav-links button:hover,
+.nav-links button:active {
+  background: #ffd900;
+  color: #292929;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 217, 0, 0.5);
+}
+
+/* 🔹 Desktop View: Horizontal Layout */
+@media (min-width: 768px) {
+  .nav-links {
+    flex-direction: row;
+  }
+
+  .nav-links li {
+    margin: 0 1rem;
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+  }
+
+  .nav-links button {
+    border: 2px solid #ffd900;
+    color: #ffd900;
+  }
+
+  .nav-links button:hover {
+    background: #ffd900;
+    color: #292929;
+  }
+}

@@ -1,0 +1,95 @@
+/* ErrorPage CSS */
+.error-container {
+  text-align: center;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background */
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Animated "Oops!" text */
+.error-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ff0055;
+  animation: bounce 1s ease-in-out,
+    colorChange 2s ease-in-out infinite alternate;
+  margin-bottom: 1rem;
+}
+
+/* Bounce Animation for "Oops!" */
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Color-changing effect for "Oops!" */
+@keyframes colorChange {
+  0% {
+    color: #ff0055;
+  }
+  50% {
+    color: #ffd900;
+  }
+  100% {
+    color: #ff0055;
+  }
+}
+
+/* Bouncing effect for the error message text */
+.error-message {
+  font-size: 1.5rem;
+  color: #f1f1f1;
+  margin-bottom: 2rem;
+  font-family: "Arial", sans-serif;
+  animation: bounceMessage 2s ease-in-out infinite; /* Add bounce animation */
+}
+
+/* Bouncing Animation for "We couldn't find the page you're looking for." */
+@keyframes bounceMessage {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Back to Home Link */
+.back-home-link {
+  font-size: 1.2rem;
+  color: #ffd900;
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.back-home-link:hover {
+  color: #292929;
+}
