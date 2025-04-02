@@ -6,9 +6,9 @@ export default function PlaceList(props) {
   if (props.items.length === 0) {
     return (
       <div className="place-list center">
-        <Card>
-          No Places Found! Maybe Create One?
-          <button>Share Place</button>
+        <Card className="no-places">
+          <p>No Places Found! Maybe Create One?</p>
+          <button className="share-place-btn">Share Place</button>
         </Card>
       </div>
     );

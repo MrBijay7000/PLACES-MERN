@@ -162,7 +162,7 @@
   }
 }
 
-/* 🔹 Actions Section */
+/* 
 .place-item__actions {
   padding: 1rem;
   text-align: center;
@@ -170,10 +170,43 @@
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* 🔹 Buttons & Links */
+
 .place-item__actions button,
 .place-item__actions a {
   margin: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #ddd;
+  background: transparent;
+  transition: all 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+
+.place-item__actions button:hover,
+.place-item__actions a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+} */
+
+/* 🔹 Actions Section - Buttons in Row */
+.place-item__actions {
+  display: flex;
+  justify-content: center; /* Center buttons */
+  gap: 1rem; /* Spacing between buttons */
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 🔹 Buttons - No Changes needed for this part */
+.place-item__actions button,
+.place-item__actions a {
+  margin: 0;
   padding: 0.6rem 1.2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 6px;
@@ -205,7 +238,7 @@
 
 /* 🔹 Map Container */
 .map-container {
-  height: 20rem;
+  height: 15rem;
   width: 100%;
   border-radius: 8px;
   overflow: hidden;

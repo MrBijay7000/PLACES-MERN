@@ -1,0 +1,145 @@
+/* .button {
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #ff0055;
+  border-radius: 4px;
+  background: #ff0055;
+  color: white;
+  cursor: pointer;
+  margin-right: 1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover,
+.button:active {
+  background: #ff4382;
+  border-color: #ff4382;
+}
+
+.button--inverse {
+  background: transparent;
+  color: #ff0055;
+}
+
+.button--inverse:hover,
+.button--inverse:active {
+  color: white;
+  background: #ff0055;
+}
+
+.button--danger {
+  background: #830000;
+  border-color: #830000;
+}
+
+.button--danger:hover,
+.button--danger:active {
+  background: #f34343;
+  border-color: #f34343;
+}
+
+.button:disabled,
+.button:hover:disabled,
+.button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button--small {
+  font-size: 0.8rem;
+}
+
+.button--big {
+  font-size: 1.5rem;
+} */
+
+/* 🔹 Button Styling */
+.button {
+  font: inherit;
+  padding: 0.75rem 2rem;
+  border: 2px solid #ff0055;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff0055, #ff2266);
+  color: white;
+  cursor: pointer;
+  margin-right: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out, transform 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(255, 0, 85, 0.4);
+}
+
+/* 🔹 Hover Effect */
+.button:hover,
+.button:active {
+  background: linear-gradient(135deg, #ff4382, #ff0055);
+  border-color: #ff4382;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0px 6px 14px rgba(255, 67, 130, 0.6);
+}
+
+/* 🔹 Inverse Button (Outline Style) */
+.button--inverse {
+  background: transparent;
+  color: #ff0055;
+  border: 2px solid #ff0055;
+  transition: all 0.3s ease-in-out;
+}
+
+.button--inverse:hover,
+.button--inverse:active {
+  background: #ff0055;
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0px 4px 10px rgba(255, 0, 85, 0.5);
+}
+
+/* 🔹 Danger Button */
+.button--danger {
+  background: linear-gradient(135deg, #830000, #a50000);
+  border-color: #830000;
+  transition: all 0.3s ease-in-out;
+}
+
+.button--danger:hover,
+.button--danger:active {
+  background: linear-gradient(135deg, #f34343, #c70000);
+  border-color: #f34343;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0px 6px 14px rgba(255, 67, 67, 0.6);
+}
+
+/* 🔹 Disabled Button */
+.button:disabled,
+.button:hover:disabled,
+.button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* 🔹 Small & Big Button Variants */
+.button--small {
+  font-size: 0.9rem;
+  padding: 0.5rem 1.2rem;
+}
+
+.button--big {
+  font-size: 1.6rem;
+  padding: 1rem 2.5rem;
+}

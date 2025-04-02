@@ -1,0 +1,171 @@
+/* .modal {
+  z-index: 100;
+  position: fixed;
+  top: 22vh;
+  left: 10%;
+  width: 80%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 8px;
+}
+
+.modal__header {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  background: #2a006e;
+  color: white;
+}
+
+.modal__header h2 {
+  margin: 0.5rem;
+}
+
+.modal__content {
+  padding: 1rem 0.5rem;
+}
+
+.modal__footer {
+  padding: 1rem 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}
+.modal-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 200ms ease-in-out;
+}
+
+.modal-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 200ms ease-in-out;
+} */
+
+/* 🔹 Modern Glassmorphism Modal */
+.modal {
+  z-index: 100;
+  position: fixed;
+  /* top: 50%;
+   */
+  top: 22vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 40rem;
+  background: rgba(255, 255, 255, 0.15); /* Translucent effect */
+  backdrop-filter: blur(12px); /* Glassmorphism Blur */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  animation: fadeIn 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+/* 🔹 Modal Header */
+.modal__header {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient Header */
+  color: white;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* 🔹 Header Title */
+.modal__header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+
+/* 🔹 Modal Content */
+.modal__content {
+  padding: 1rem;
+  color: #333;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* 🔹 Modal Footer */
+.modal__footer {
+  padding: 1rem;
+  text-align: right;
+}
+
+/* 🔹 Button Styling */
+.modal__footer button {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: #ff5a5f;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal__footer button:hover {
+  background: #e63946;
+  transform: scale(1.05);
+}
+
+/* 🔹 Responsive: Larger Screens */
+@media (min-width: 768px) {
+  .modal {
+    width: 40rem;
+  }
+}
+
+/* 🔹 Enter Animation */
+.modal-enter {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 300ms ease-in-out;
+}
+
+/* 🔹 Exit Animation */
+.modal-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+  transition: all 300ms ease-in-out;
+}
+
+/* 🔹 Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
