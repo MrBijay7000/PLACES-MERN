@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import "./NavLinks.css";
 
-export default function NavLinks(props) {
+export default function NavLinks() {
   return (
     <ul className="nav-links">
       <li>
