@@ -60,9 +60,8 @@
 .modal {
   z-index: 100;
   position: fixed;
-  /* top: 50%;
-   */
-  top: 22vh;
+  top: 50%;
+  /* top: 22vh; */
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;

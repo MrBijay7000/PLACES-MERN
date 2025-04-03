@@ -1,0 +1,80 @@
+/* .place-form {
+  position: relative;
+  list-style: none;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 90%;
+  max-width: 40rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 6px;
+  background: white;
+} */
+
+/* 🔹 Place Form Container */
+.place-form {
+  position: relative;
+  list-style: none;
+  margin: 2rem auto;
+  padding: 2rem;
+  width: 90%;
+  max-width: 40rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85); /* Soft glass effect */
+  backdrop-filter: blur(12px); /* Frosted glass effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* 🔹 Hover & Focus Effect */
+.place-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 Form Title */
+.place-form h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🔹 Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+  .place-form {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .place-form h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* 🔹 Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .place-form {
+    background: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 6px 18px rgba(255, 255, 255, 0.15);
+  }
+
+  .place-form h2 {
+    color: #ddd;
+  }
+}
