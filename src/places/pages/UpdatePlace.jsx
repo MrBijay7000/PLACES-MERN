@@ -48,19 +48,21 @@ export default function UpdatePlacePage() {
   const identifierPlace = DUMMY_PLACES.find((p) => p.id === placeId);
 
   useEffect(() => {
-    setFormData(
-      {
-        title: {
-          value: identifierPlace.title,
-          isValid: true,
+    if (identifierPlace) {
+      setFormData(
+        {
+          title: {
+            value: identifierPlace.title,
+            isValid: true,
+          },
+          description: {
+            value: identifierPlace.description,
+            isValid: true,
+          },
         },
-        description: {
-          value: identifierPlace.description,
-          isValid: true,
-        },
-      },
-      true
-    );
+        true
+      );
+    }
     setIsLoading(false);
   }, [setFormData, identifierPlace]);
 

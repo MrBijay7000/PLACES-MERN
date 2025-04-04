@@ -1,3 +1,5 @@
+import { useCallback, useState } from "react";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import UsersPage from "./users/pages/Users";
 import NewPlacePage from "./places/pages/NewPlace";
@@ -5,23 +7,71 @@ import ErrorPage from "./shared/RootPage/Error";
 import RootLayout from "./shared/RootPage/RootLayout";
 import UserPlacesPage from "./places/pages/UserPlaces";
 import UpdatePlacePage from "./places/pages/UpdatePlace";
+import AuthPage from "./users/pages/Auth";
+import { AuthContext } from "./shared/context/auth-context";
 
 function App() {
-  const router = createBrowserRouter([
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const login = useCallback(() => {
+    setIsLoggedIn(true);
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+  }, []);
+
+  // let routes;
+
+  // if (isLoggedIn) {
+  //   routes = ();
+  // } else {
+  // }
+
+  const routes = [
     {
       path: "/",
-      element: <RootLayout />, // Wrap everything inside RootLayout
+      element: <RootLayout />,
+      errorElement: <ErrorPage />,
       children: [
         { path: "/", element: <UsersPage /> },
-        { path: "/:userId/places", element: <UserPlacesPage /> },
-        { path: "/places/new", element: <NewPlacePage /> },
-        { path: "/places/:placeId", element: <UpdatePlacePage /> },
-      ],
-      errorElement: <ErrorPage />, // Show the custom error page on errors
-    },
-  ]);
+        ...(isLoggedIn
+          ? [
+              { path: "/places/new", element: <NewPlacePage /> },
+              { path: "/places/:placeId", element: <UpdatePlacePage /> },
+            ]
+          : [
+              { path: "/:userId/places", element: <UserPlacesPage /> },
 
-  return <RouterProvider router={router} />;
+              { path: "/auth", element: <AuthPage /> },
+              { path: "*", element: <AuthPage /> }, // Redirect all other routes to login
+            ]),
+      ],
+    },
+  ];
+
+  const router = createBrowserRouter(routes);
+
+  // const router = createBrowserRouter([
+  //   {
+  //     path: "/",
+  //     element: <RootLayout />, // Wrap everything inside RootLayout
+  //     children: [
+  //       { path: "/", element: <UsersPage /> },
+  //       { path: "/:userId/places", element: <UserPlacesPage /> },
+  //       { path: "/places/new", element: <NewPlacePage /> },
+  //       { path: "/places/:placeId", element: <UpdatePlacePage /> },
+  //       { path: "/auth", element: <AuthPage /> },
+  //     ],
+  //     errorElement: <ErrorPage />, // Show the custom error page on errors
+  //   },
+  // ]);
+
+  return (
+    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+      <RouterProvider router={router} />
+    </AuthContext.Provider>
+  );
 }
 
 export default App;

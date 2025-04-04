@@ -134,7 +134,7 @@
 }
 
 /* 🔹 Enter Animation */
-.modal-enter {
+/* .modal-enter {
   opacity: 0;
   transform: translateY(-20px) scale(0.95);
 }
@@ -145,7 +145,7 @@
   transition: all 300ms ease-in-out;
 }
 
-/* 🔹 Exit Animation */
+🔹 Exit Animation
 .modal-exit {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -157,7 +157,7 @@
   transition: all 300ms ease-in-out;
 }
 
-/* 🔹 Keyframe Animations */
+🔹 Keyframe Animations
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -167,4 +167,40 @@
     opacity: 1;
     transform: scale(1);
   }
+} */
+
+/* 🔹 Enter Animation: from top to center */
+/* .modal-enter {
+  opacity: 0;
+  transform: translateY(-50px) scale(0.95);
 }
+
+.modal-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 300ms ease-in-out;
+}
+
+🔹 Exit Animation: down and shrink
+.modal-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: all 300ms ease-in-out;
+}
+
+🔹 Optional Keyframes if using animation instead of CSSTransition
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+} */
