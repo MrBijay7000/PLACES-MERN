@@ -1,23 +1,47 @@
 import { useParams } from "react-router-dom";
 import PlaceList from "../components/PlaceList";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import { useEffect, useState } from "react";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
-const DUMMY_PLACES = [
-  {
-    id: "p1",
-    title: "HAHAHA",
-    description: "HAHAHAHAHAHAHA",
-    imageUrl:
-      "https://i.pinimg.com/736x/2b/41/dc/2b41dca6ed3a700a2acc5124707cbce7.jpg",
-    address: "ONE PUNCH",
-    location: {
-      lat: 40.7,
-      lng: -73.7,
-    },
-    creator: "u1",
-  },
-];
 export default function UserPlacesPage() {
+  const [loadedPlaces, setLoadedPlaces] = useState();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
   const userId = useParams().userId;
-  const loadedPlace = DUMMY_PLACES.filter((place) => place.creator === userId);
-  return <PlaceList items={loadedPlace} />;
+
+  useEffect(() => {
+    const fetchPlaces = async () => {
+      try {
+        const responseData = await sendRequest(
+          `http://localhost:5001/api/places/user/${userId}`
+        );
+        setLoadedPlaces(responseData.places);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchPlaces();
+  }, [sendRequest, userId]);
+
+  async function placeDeletedHander(deletedPlaceId) {
+    setLoadedPlaces((prevPlaces) =>
+      prevPlaces.filter((place) => place.id !== deletedPlaceId)
+    );
+  }
+
+  return (
+    <>
+      <ErrorModal error={error} onClear={clearError} />
+      {isLoading && (
+        <div className="center">
+          <LoadingSpinner />
+        </div>
+      )}
+      {!isLoading && loadedPlaces && (
+        <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHander} />
+      )}
+    </>
+  );
 }

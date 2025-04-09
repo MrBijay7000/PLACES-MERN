@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Input from "../../shared/components/FormElements/Input";
 import {
   VALIDATOR_MINLENGTH,
@@ -8,28 +8,19 @@ import {
 import Button from "../../shared/components/FormElements/Button";
 import Card from "../../shared/components/UIElements/Card";
 import { useForm } from "../../shared/hooks/form-hook";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import { AuthContext } from "../../shared/context/auth-context";
 
 import "./PlaceForm.css";
-
-const DUMMY_PLACES = [
-  {
-    id: "p1",
-    title: "HAHAHA",
-    description: "HAHAHAHAHAHAHA",
-    imageUrl:
-      "https://i.pinimg.com/736x/2b/41/dc/2b41dca6ed3a700a2acc5124707cbce7.jpg",
-    address: "ONE PUNCH",
-    location: {
-      lat: 40.7,
-      lng: -73.7,
-    },
-    creator: "u1",
-  },
-];
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 
 export default function UpdatePlacePage() {
-  const [isLoading, setIsLoading] = useState(true);
+  const auth = useContext(AuthContext);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [loadedPlaces, setLoadedPlaces] = useState();
   const placeId = useParams().placeId;
+  const navigate = useNavigate();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -45,33 +36,63 @@ export default function UpdatePlacePage() {
     false
   );
 
-  const identifierPlace = DUMMY_PLACES.find((p) => p.id === placeId);
-
   useEffect(() => {
-    if (identifierPlace) {
-      setFormData(
-        {
-          title: {
-            value: identifierPlace.title,
-            isValid: true,
+    const fetchPlaces = async () => {
+      try {
+        const responseData = await sendRequest(
+          `http://localhost:5001/api/places/${placeId}`
+        );
+        setLoadedPlaces(responseData.place);
+        setFormData(
+          {
+            title: {
+              value: responseData.place.title,
+              isValid: true,
+            },
+            description: {
+              value: responseData.place.description,
+              isValid: true,
+            },
           },
-          description: {
-            value: identifierPlace.description,
-            isValid: true,
-          },
-        },
-        true
-      );
-    }
-    setIsLoading(false);
-  }, [setFormData, identifierPlace]);
+          true
+        );
+      } catch (err) {
+        console.log({ err });
+      }
+    };
+    fetchPlaces();
+  }, [sendRequest, placeId, setFormData]);
 
-  function placeUpdateSubmitHandler(event) {
+  async function placeUpdateSubmitHandler(event) {
     event.preventDefault();
-    console.log(formState.inputs);
+    try {
+      sendRequest(
+        `http://localhost:5001/api/places/${placeId}`,
+        "PATCH",
+        JSON.stringify({
+          title: formState.inputs.title.value,
+          description: formState.inputs.description.value,
+        }),
+        { "Content-Type": "application/json" }
+      );
+      navigate("/" + auth.userId + "/places");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  if (!identifierPlace) {
+  if (isLoading) {
+    return (
+      <div className="place-list center">
+        <Card className="no-places">
+          <LoadingSpinner />
+          {/* <button className="share-place-btn">Share Place</button> */}
+        </Card>
+      </div>
+    );
+  }
+
+  if (!loadedPlaces && !error) {
     return (
       //   <div className="center">
       //     <h2>Could not find place!</h2>
@@ -85,44 +106,38 @@ export default function UpdatePlacePage() {
     );
   }
 
-  if (isLoading) {
-    return (
-      <div className="place-list center">
-        <Card className="no-places">
-          <p>Loading....</p>
-          {/* <button className="share-place-btn">Share Place</button> */}
-        </Card>
-      </div>
-    );
-  }
-
   return (
-    <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
-      <Input
-        id="title"
-        element="input"
-        type="text"
-        label="Title"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid title"
-        onInput={inputHandler}
-        initialValue={formState.inputs.title.value}
-        initialValid={formState.inputs.title.isValid}
-      />
-      <Input
-        id="description"
-        element="textarea"
-        type="text"
-        label="Description"
-        validators={[VALIDATOR_MINLENGTH(5)]}
-        errorText="Please enter a valid description (Atleast 5 Characters)."
-        onInput={inputHandler}
-        initialValue={formState.inputs.description.value}
-        initialValid={formState.inputs.description.isValid}
-      />
-      <Button type="submit" disabled={!formState.isValid}>
-        UPDATE PLACE
-      </Button>
-    </form>
+    <>
+      <ErrorModal error={error} onClear={clearError} />
+      {!isLoading && loadedPlaces && (
+        <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
+          <Input
+            id="title"
+            element="input"
+            type="text"
+            label="Title"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid title"
+            onInput={inputHandler}
+            initialValue={loadedPlaces.title}
+            initialValid={true}
+          />
+          <Input
+            id="description"
+            element="textarea"
+            type="text"
+            label="Description"
+            validators={[VALIDATOR_MINLENGTH(5)]}
+            errorText="Please enter a valid description (Atleast 5 Characters)."
+            onInput={inputHandler}
+            initialValue={loadedPlaces.description}
+            initialValid={true}
+          />
+          <Button type="submit" disabled={!formState.isValid}>
+            UPDATE PLACE
+          </Button>
+        </form>
+      )}
+    </>
   );
 }
