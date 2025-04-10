@@ -6,7 +6,7 @@ const RootLayout = () => {
     <>
       <MainNavigation />
       <main>
-        <Outlet /> {/* This renders the nested route content dynamically */}
+        <Outlet />
       </main>
     </>
   );

@@ -75,22 +75,3 @@
   color: black;
   transform: scale(1.05);
 }
-
-/* .place-list button {
-  display: block;
-  margin: 1rem auto;
-  padding: 0.8rem 1.5rem;
-  font-size: 1.2rem;
-  background: #333;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-}
-
-.place-list button:hover {
-  background: #ffd900;
-  color: black;
-  transform: scale(1.05);
-} */

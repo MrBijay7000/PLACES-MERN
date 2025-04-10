@@ -1,5 +1,3 @@
-import { useCallback, useState, useEffect } from "react";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import UsersPage from "./users/pages/Users";
 import NewPlacePage from "./places/pages/NewPlace";

@@ -16,18 +16,6 @@
   animation: lds-dual-ring 1.2s linear infinite;
 }
 
-/* .loading-spinner__overlay {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(255, 255, 255, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
 .loading-spinner__overlay {
   height: 100%;
   width: 100%;
