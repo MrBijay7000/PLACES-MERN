@@ -57,7 +57,10 @@ export default function NewPlacePage() {
       await sendRequest(
         "http://localhost:5001/api/places",
         "POST",
-        formData
+        formData,
+        {
+          Authorization: "Bearer " + auth.token,
+        }
         // {
         //   "Content-Type": "application/json",
         // }

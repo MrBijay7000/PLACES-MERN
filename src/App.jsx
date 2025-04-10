@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import UsersPage from "./users/pages/Users";
@@ -9,27 +9,10 @@ import UserPlacesPage from "./places/pages/UserPlaces";
 import UpdatePlacePage from "./places/pages/UpdatePlace";
 import AuthPage from "./users/pages/Auth";
 import { AuthContext } from "./shared/context/auth-context";
+import { useAuth } from "./shared/hooks/auth-hook";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(false);
-
-  const login = useCallback((uid) => {
-    setIsLoggedIn(true);
-    setUserId(uid);
-  }, []);
-
-  const logout = useCallback(() => {
-    setIsLoggedIn(false);
-    setUserId(null);
-  }, []);
-
-  // let routes;
-
-  // if (isLoggedIn) {
-  //   routes = ();
-  // } else {
-  // }
+  const { token, login, logout, userId } = useAuth();
 
   const routes = [
     {
@@ -38,7 +21,7 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         { path: "/", element: <UsersPage /> },
-        ...(isLoggedIn
+        ...(token
           ? [
               { path: "/places/new", element: <NewPlacePage /> },
               { path: "/places/:placeId", element: <UpdatePlacePage /> },
@@ -48,7 +31,7 @@ function App() {
               { path: "/:userId/places", element: <UserPlacesPage /> },
 
               { path: "/auth", element: <AuthPage /> },
-              { path: "*", element: <AuthPage /> }, // Redirect all other routes to login
+              { path: "*", element: <AuthPage /> },
             ]),
       ],
     },
@@ -72,7 +55,9 @@ function App() {
   // ]);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout, userId }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn: !!token, token, login, logout, userId }}
+    >
       <RouterProvider router={router} />
     </AuthContext.Provider>
   );

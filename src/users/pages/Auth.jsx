@@ -78,7 +78,7 @@ export default function AuthPage() {
             "Content-Type": "application/json",
           }
         );
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId, responseData.token);
         navigate("/");
       } catch (err) {
         console.log(err);
@@ -98,7 +98,7 @@ export default function AuthPage() {
           //   "Content-Type": "application/json",
           // }
         );
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId, responseData.token);
         navigate("/");
       } catch (err) {
         console.log(err);

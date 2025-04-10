@@ -20,6 +20,11 @@ export default function UserPlacesPage() {
         setLoadedPlaces(responseData.places);
       } catch (err) {
         console.log(err);
+        if (
+          err.message === "Could not find a place for the provided user id."
+        ) {
+          setLoadedPlaces([]); // So PlaceList still renders with empty list
+        }
       }
     };
     fetchPlaces();
@@ -33,12 +38,13 @@ export default function UserPlacesPage() {
 
   return (
     <>
-      <ErrorModal error={error} onClear={clearError} />
+      {/* <ErrorModal error={error} onClear={clearError} /> */}
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
         </div>
       )}
+
       {!isLoading && loadedPlaces && (
         <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHander} />
       )}
