@@ -68,7 +68,7 @@ export default function AuthPage() {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5001/api/users/login",
+          "https://places-mern-api.vercel.app/api/users/login",
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -91,7 +91,7 @@ export default function AuthPage() {
         formData.append("password", formState.inputs.password.value);
         formData.append("image", formState.inputs.image.value);
         const responseData = await sendRequest(
-          "http://localhost:5001/api/users/signup",
+          "https://places-mern-api.vercel.app/api/users/signup",
           "POST",
           formData
           // {

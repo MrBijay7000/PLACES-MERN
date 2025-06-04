@@ -12,7 +12,7 @@ export default function UsersPage() {
     const fetchUsers = async () => {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5001/api/users"
+          "https://places-mern-api.vercel.app/api/users"
         );
 
         setLoadedUsers(responseData.users);
