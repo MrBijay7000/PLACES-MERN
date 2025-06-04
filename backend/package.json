@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
+  },
   "dependencies": {
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
@@ -18,7 +22,7 @@
     "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.15.0",
-    "mongoose": "^8.13.2",
+    "mongoose": "^7.8.7",
     "mongoose-unique-validator": "^4.0.1",
     "multer": "^1.4.5-lts.2",
     "uuid": "^10.0.0"
