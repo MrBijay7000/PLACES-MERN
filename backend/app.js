@@ -15,9 +15,16 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://places-mern-two.vercel.app/"],
-    methods: ["POST", "GET", "DELETE", "PATCH"],
+    origin: "https://places-mern-two.vercel.app", // Remove the trailing slash
+    methods: ["POST", "GET", "DELETE", "PATCH", "OPTIONS"], // Add OPTIONS
     credentials: true,
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "Authorization",
+    ],
   })
 );
 
