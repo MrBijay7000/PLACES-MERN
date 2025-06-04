@@ -18,13 +18,13 @@ app.use(
     origin: "https://places-mern-two.vercel.app", // Remove the trailing slash
     methods: ["POST", "GET", "DELETE", "PATCH", "OPTIONS"], // Add OPTIONS
     credentials: true,
-    allowedHeaders: [
-      "Origin",
-      "X-Requested-With",
-      "Content-Type",
-      "Accept",
-      "Authorization",
-    ],
+    // allowedHeaders: [
+    //   "Origin",
+    //   "X-Requested-With",
+    //   "Content-Type",
+    //   "Accept",
+    //   "Authorization",
+    // ],
   })
 );
 
@@ -55,6 +55,15 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || "An unknown error occured!" });
 });
 
+// if (process.env.NODE_ENV !== "production") {
+//   mongoose
+//     .connect(
+//       "mongodb+srv://thelordshadow13:kjpDBQPFhwwaT76A@cluster0.aeql0sp.mongodb.net/places?retryWrites=true&w=majority&appName=Cluster0"
+//     )
+//     .then(() => app.listen(5001))
+//     .catch((err) => console.log(err));
+// }
+
 mongoose
   .connect(
     "mongodb+srv://thelordshadow13:kjpDBQPFhwwaT76A@cluster0.aeql0sp.mongodb.net/places?retryWrites=true&w=majority&appName=Cluster0"
@@ -65,3 +74,5 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+module.exports = app;
